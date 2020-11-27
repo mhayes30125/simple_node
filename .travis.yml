@@ -15,10 +15,9 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  - docker build -t simple-node --build-arg FAVORITE_FOOD=${FAVORITE_FOOD} .
-  - docker tag simple-node mhayes30125/simple-node:v2
+  - docker build -t mhayes30125/simple-node:latest --build-arg FAVORITE_FOOD=${FAVORITE_FOOD} .
 
 # Tasks to perform after the process is successful. Formatting the Docker username and password as below enables you to programmatically log in without having the password exposed in logs.
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push mhayes30125/simple-node:v2
+  - docker push mhayes30125/simple-node:latest
